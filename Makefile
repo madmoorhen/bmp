@@ -21,6 +21,8 @@ $(OBJ_DIR):
 	mkdir -p $@
 $(BIN_DIR):
 	mkdir -p $@
+$(OUT_DIR):
+	mkdir -p $@
 
 .PHONY: clean build test
 
@@ -29,10 +31,10 @@ build: $(BIN_DIR)/$(PROJECT_NAME)
 clean:
 	rm -rf $(OBJ_DIR)
 	rm -rf $(BIN_DIR)
-	rm -rf $(OUT_DIR)/*
+	rm -rf $(OUT_DIR)
 
 debug:
 	gdb ./$(BIN_DIR)/$(PROJECT_NAME)
 
-test: build
+test: build $(OUT_DIR)
 	./$(BIN_DIR)/$(PROJECT_NAME)
